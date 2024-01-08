@@ -15,11 +15,8 @@ var modelCategory = require('../models/category')
 
 router.get('/', async function (req, res, next) {
  
-     
-      //  var productsAll = await modelCategory.getall(req.query);
-       
-      // responseData.responseReturn(res, 200, true, productsAll);
-      var categoryAll = await SchemaCategory.find({})
+      
+      var categoryAll = await SchemaCategory.find({isDelete:false}).sort({order:-1})
       .populate({path:'product',select:'_id name order isDelete '});
       responseData.responseReturn(res, 200, true, categoryAll);
 
